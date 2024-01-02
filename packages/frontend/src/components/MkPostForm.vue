@@ -561,6 +561,8 @@ function clear() {
 function onKeydown(ev: KeyboardEvent) {
 	if (ev.key === 'Enter' && (ev.ctrlKey || ev.metaKey) && canPost.value) post();
 	if (ev.key === 'Escape') {
+		// 絵文字Picker等のポップアップよりも先に処理され、
+		// ポップアップをESCで閉じられなくなるのを防ぐため
 		setTimeout(() => {
 			if (!ev.defaultPrevented) {
 				emit('esc');
