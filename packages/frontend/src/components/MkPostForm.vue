@@ -560,7 +560,13 @@ function clear() {
 
 function onKeydown(ev: KeyboardEvent) {
 	if (ev.key === 'Enter' && (ev.ctrlKey || ev.metaKey) && canPost.value) post();
-	if (ev.key === 'Escape') emit('esc');
+	if (ev.key === 'Escape') {
+		setTimeout(() => {
+			if (!ev.defaultPrevented) {
+				emit('esc');
+			}
+		}, 1)
+	}
 }
 
 function onCompositionUpdate(ev: CompositionEvent) {
